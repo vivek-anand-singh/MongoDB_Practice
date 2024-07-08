@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 require("dotenv").config();
+const productRoutes = require('./Routes/productRoute');
+const userRoutes = require('./Routes/userRoute');
 
 
 app.use(express.json());
@@ -17,7 +19,8 @@ mongoose
     console.log("Db connection Failed", err);
   });
 
-// ProductSchema
+app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello World");
